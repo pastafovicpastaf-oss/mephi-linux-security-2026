@@ -1,0 +1,85 @@
+    1  sudo dnf upgrade
+    2  sudo dnf update
+    3  nano token
+    4  mkdir homework_mephi
+    5  cd homework_mephi
+    6  git config --global user.name "pastafovicpastaf-oss"
+    7  git config --global user.email "pastafovicpastaf@gmail.com"
+    8  git config --global credential.helper 'cache --timeout=3600'
+    9  git clone https://github.com/pastafovicpastaf-oss/mephi-linux-security-2026.git
+   10  cd mephi-linux-security-2026 || ls
+   11  ls
+   12  cat README.md
+   13  sudo groupadd students
+   14  getent group students
+   15  sudo useradd user1
+   16  sudo usermod -u 1234 user1
+   17  sudo usermod -g students user1
+   18  sudo usermod -s /bin/bash user1
+   19  grep user1 /etc/passwd
+   20  sudo mkdir /home/user1
+   21  ls -la /home
+   22  ls -la /home/user1
+   23  sudo ls -la /home/user1
+   24  sudo grep user1 /etc/shadow
+   25  sudo passwd user1
+   26  sudo chage -M 90 user1
+   27  sudo grep user1 /etc/shadow
+   28  sudo chage -l user1
+   29  sudo find / -perm -4000 -type f -fprintf ~/find-suid.out '%#m %u %p\n' 2>/dev/null
+   30  cat ~/find-suid.out
+   31  ps -eo ruid,euid,user,comm | awk 'NR==1 || ($1!=0 && $2==0)'
+   32  ps -eo ruid,euid,user,comm > ~/ps-priv.out
+   33  nano ps-priv.out
+   34  grep fusermount3 ~/ps-priv.out
+   35  su - user1
+   36  sudo cp /usr/bin/cat /home/user1/cat
+   37  ls -l /home/user1/cat
+   38  sudo ls -l /home/user1/cat
+   39  sudo chmod 4755 /home/user1/cat
+   40  ls -l /home/user1/cat
+   41  sudo ls -l /home/user1/cat
+   42  su - user1
+   43  sudo cp /usr/bin/chown /home/user1/chown
+   44  sudo ls -l /home/user1/chown
+   45  sudo setcap cap_chown=ep /home/user1/chown
+   46  getcap /home/user1/chown
+   47  sudo getcap /home/user1/chown
+   48  su - user1
+   49  stat /home/user1/chown >> ~/stat.out
+   50  sudo stat /home/user1/chown >> ~/stat.out
+   51  getcap /home/user1/chown > ~/getcap.out
+   52  sudo getcap /home/user1/chown > ~/getcap.out
+   53  cat ~/stat.out
+   54  sudo stat /home/user1 >> ~/stat.out
+   55  sudo stat /home/user1/cat >> ~/stat.out
+   56  cat ~/stat.out
+   57  sudo visudo -f /etc/sudoers.d/user1-time
+   58  sudo visudo -c
+   59  sudo ls -l /etc/sudoers.d/user1-time
+   60  sudo chmod 0440 /etc/sudoers.d/user1-time
+   61  sudo visudo -c
+   62  sudo ls -l /etc/sudoers.d/user1-time
+   63  sudo -l -U user1
+   64  sudo cat /etc/sudoers.d/user1-time
+   65  sudo visudo -f /etc/sudoers.d/user1-time
+   66  sudo -l -U user1
+   67  su - user1
+   68  dir
+   69  ls
+   70  pwd
+   71  ls -l ~/*.out ~/passwd ~/shadow ~/group ~/sudoers 2>/dev/null
+   72  sudo cp /etc/passwd ~/passwd
+   73  sudo cp /etc/shadow ~/shadow
+   74  sudo cp /etc/group ~/group
+   75  sudo cp /etc/sudoers ~/sudoers
+   76  sudo cp /etc/sudoers.d/user1-time ~/sudoers.d-user1-time
+   77  sudo chown vadim:vadim ~/passwd ~/shadow ~/group ~/sudoers ~/sudoers.d-user1-time
+   78  sudo chown vadim:vadim ~/find-suid.out
+   79  ls -l ~/passwd ~/shadow ~/group ~/sudoers ~/sudoers.d-user1-time ~/find-suid.out
+   80  chmod 644 ~/shadow ~/sudoers ~/sudoers.d-user1-time
+   81  ls -l ~/shadow ~/sudoers ~/sudoers.d-user1-time
+   82  echo 375042
+   83  ls -l ~/Изображения ~/Pictures 2>/dev/null
+   84  history | wc -l
+   85  history > ~/history.out
